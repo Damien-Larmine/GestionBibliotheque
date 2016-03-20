@@ -1,0 +1,44 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+            Liste des Utilisateurs
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:commandLink action="#{utilisateurBean.previous}" value="Previous #{utilisateurBean.taillePage}" rendered="#{utilisateurBean.hasPreviousPage}"/> 
+            <h:commandLink action="#{utilisateurBean.next}" value="Next #{utilisateurBean.taillePage}" rendered="#{utilisateurBean.hasNextPage}"/>            
+            <h:dataTable value="#{utilisateurBean.listeUtilisateurs}" var="item" cellpadding="2" rules="all">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nom"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nomUtilisateur}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Prenom"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prenomUtilisateur}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value=" "/>
+                    </f:facet>
+                    <h:commandLink action="#{utilisateurBean.selecUtil()}" value="Voir"/>
+                </h:column>
+            </h:dataTable>
+            <br/>
+        </h:form>
+        <a href="./indexlog.jsp">Revenir à la page d'accueil</a>
+        </ui:define>
+    </ui:composition>
+</html>

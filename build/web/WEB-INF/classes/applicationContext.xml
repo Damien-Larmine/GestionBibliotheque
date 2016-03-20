@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:/database.properties</value>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+    <!-- Hibernate session factory -->
+     <bean id="sessionFactory" 
+          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> 
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="configLocation">
+            <value>classpath:/hibernate.cfg.xml</value>
+        </property>
+        
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.cglib.use_reflection_optimizer">false</prop>
+            </props>
+        </property>
+            	
+        <!--<property name="mappingResources">
+            <list>
+                <value>entite/Livre.hbm.xml</value>
+                <value>entite/Utilisateur.hbm.xml</value>
+                <value>entite/Emprunt.hbm.xml</value>
+            </list>
+        </property>-->	
+    </bean>
+       <!-- Objets Metier -->
+   <bean id="livreMetier" class="business.LivreMetier" >
+   		<property name="livreDAO" ref="livreDAO" />
+   </bean>
+   <bean id="utilisateurMetier" class="business.UtilisateurMetier" >
+   		<property name="utilisateurDAO" ref="utilisateurDAO" />
+   </bean>
+   <bean id="empruntMetier" class="business.EmpruntMetier" >
+   		<property name="empruntDAO" ref="empruntDAO" />
+   </bean>
+   <bean id="usersMetier" class="business.UsersMetier" >
+   		<property name="usersDAO" ref="usersDAO" />
+   </bean>
+   <bean id="authoritiesMetier" class="business.AuthoritiesMetier" >
+   		<property name="authoritiesDAO" ref="authoritiesDAO" />
+   </bean>
+ 
+   <!-- Objets DAO -->
+   <bean id="livreDAO" class="data.LivreDAO" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   <bean id="utilisateurDAO" class="data.UtilisateurDAO" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   <bean id="empruntDAO" class="data.EmpruntDAO" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   <bean id="usersDAO" class="data.UsersDAO" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   <bean id="authoritiesDAO" class="data.AuthoritiesDAO" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+	
+</beans>

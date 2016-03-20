@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="top">
+        Détails de <h:outputText value="#{utilisateurBean.utilisateur.prenomUtilisateur}" title="topPrénom"/> <h:outputText value="#{utilisateurBean.utilisateur.nomUtilisateur}" title="topNom"/>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Prénom :"/>
+                    <h:outputText value="#{utilisateurBean.utilisateur.prenomUtilisateur}" title="Prenom"/>
+                    <h:outputText value="Nom :"/>
+                    <h:outputText value="#{utilisateurBean.utilisateur.nomUtilisateur}" title="Nom"/>
+                    <h:outputText value="Date de Naissance :"/>
+                    <h:outputText value="#{utilisateurBean.utilisateur.dateNaissance}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Adresse :"/>
+                    <h:outputText value="#{utilisateurBean.utilisateur.adresseUtlisateur}"/>
+
+
+                    <h:outputText value="Mail :"/>
+                    <h:outputText value="#{utilisateurBean.utilisateur.mailUtilisateur} min" title="AdrMail"/>
+
+                    <h:outputText value="Téléphone :"/>
+                    <h:outputText value="#{utilisateurBean.utilisateur.telephoneUtilisateur}" title="NumeroTel"/>
+                </h:panelGrid>
+                <br/>
+                <h:commandLink action="#{utilisateurBean.prepareList}" value="Retour à la liste"/>
+                <br/>
+                <a href="./uUtilisateur.xhtml">Modifier cet utilisateur</a><br/>
+                <h:commandLink action="#{utilisateurBean.deleteUtilisateur()}" value="Supprimer cet utilisateur"/>
+            </h:form>
+    </ui:define>
+
+</ui:composition>

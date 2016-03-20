@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 mars 2016 10:01:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entite.Livre" table="livre" catalog="bibliotheque" optimistic-lock="version">
+        <id name="idLivre" type="int">
+            <column name="IdLivre" />
+            <generator class="assigned" />
+        </id>
+        <property name="titreLivre" type="string">
+            <column name="TitreLivre" not-null="true" />
+        </property>
+        <property name="auteurLivre" type="string">
+            <column name="AuteurLivre" not-null="true" />
+        </property>
+        <property name="isbn" type="string">
+            <column name="ISBN" length="13" not-null="true" />
+        </property>
+        <property name="participantsLivre" type="string">
+            <column name="ParticipantsLivre" length="65535" not-null="false" />
+        </property>
+        <property name="editeurLivre" type="string">
+            <column name="EditeurLivre" not-null="false" />
+        </property>
+        <property name="dateEdition" type="date">
+            <column name="DateEdition" length="10" not-null="false" />
+        </property>
+        <property name="lieuEdition" type="string">
+            <column name="LieuEdition" not-null="false" />
+        </property>
+        <property name="collection" type="string">
+            <column name="Collection" not-null="false" />
+        </property>
+        <property name="nbPages" type="int">
+            <column name="NbPages" not-null="true" />
+        </property>
+        <property name="hauteurLivre" type="float">
+            <column name="HauteurLivre" precision="12" scale="0" not-null="false" />
+        </property>
+        <property name="largeurLivre" type="float">
+            <column name="LargeurLivre" precision="12" scale="0" not-null="false" />
+        </property>
+        <property name="profondeurLivre" type="float">
+            <column name="ProfondeurLivre" precision="12" scale="0" not-null="false" />
+        </property>
+        <property name="couleurNb" type="string">
+            <column name="CouleurNB" length="8" not-null="false" />
+        </property>
+        <property name="langueLivre" type="string">
+            <column name="LangueLivre" length="20" not-null="true" />
+        </property>
+        <property name="classificationDewey" type="float">
+            <column name="ClassificationDewey" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="resumeLivre" type="string">
+            <column name="ResumeLivre" length="65535" not-null="false" />
+        </property>
+        <property name="notesLivre" type="string">
+            <column name="NotesLivre" length="65535" not-null="false" />
+        </property>
+        <property name="coteLivre" type="string">
+            <column name="CoteLivre" length="10" not-null="true" />
+        </property>
+        <property name="secteur" type="string">
+            <column name="Secteur" length="20" not-null="false" />
+        </property>
+        <property name="motsClef" type="string">
+            <column name="MotsClef" not-null="false" />
+        </property>
+        <set name="emprunts" table="emprunt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdLivre" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="entite.Emprunt" />
+        </set>
+    </class>
+</hibernate-mapping>

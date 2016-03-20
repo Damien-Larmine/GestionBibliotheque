@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+            Modifier un Utilisateur
+        </ui:define>
+        <ui:define name="body">
+            <f:view>
+                <h:form id="updateUtilisateurForm">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Prenom : "/>
+                        <h:inputText value="#{utilisateurBean.utilisateur.prenomUtilisateur}"/>
+                        <h:outputText value="Nom : "/>
+                        <h:inputText value="#{utilisateurBean.utilisateur.nomUtilisateur}"/>
+                        <h:outputText value="Adresse : "/>
+                        <h:inputText value="#{utilisateurBean.utilisateur.adresseUtlisateur}"/>
+                        <h:outputText value="Numéro de Téléphone : "/>
+                        <h:inputText value="#{utilisateurBean.utilisateur.telephoneUtilisateur}"/>
+                        <h:outputText value="Adresse Mail : "/>
+                        <h:inputText value="#{utilisateurBean.utilisateur.mailUtilisateur}"/>
+                        <h:commandButton value="Submit" action="#{utilisateurBean.createUtilisateur()}"/>
+                </h:panelGrid>
+            </h:form>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</html>

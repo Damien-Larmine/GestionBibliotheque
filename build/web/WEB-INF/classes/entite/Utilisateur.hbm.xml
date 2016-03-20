@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 mars 2016 10:01:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entite.Utilisateur" table="utilisateur" catalog="bibliotheque" optimistic-lock="version">
+        <id name="idUtilisateur" type="int">
+            <column name="IdUtilisateur" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomUtilisateur" type="string">
+            <column name="NomUtilisateur" length="45" not-null="true" />
+        </property>
+        <property name="prenomUtilisateur" type="string">
+            <column name="PrenomUtilisateur" length="45" not-null="true" />
+        </property>
+        <property name="sexeUtilisateur" type="string">
+            <column name="SexeUtilisateur" length="2" not-null="false" />
+        </property>
+        <property name="dateNaissance" type="date">
+            <column name="DateNaissance" length="10" not-null="false" />
+        </property>
+        <property name="adresseUtlisateur" type="string">
+            <column name="AdresseUtlisateur" length="65535" not-null="true" />
+        </property>
+        <property name="telephoneUtilisateur" type="string">
+            <column name="TelephoneUtilisateur" length="10" not-null="true" />
+        </property>
+        <property name="mailUtilisateur" type="string">
+            <column name="MailUtilisateur" length="45" not-null="true" />
+        </property>
+        <property name="bibiliothecaire" type="boolean">
+            <column name="Bibiliothecaire" not-null="false" />
+        </property>
+        <set name="userses" table="users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUtilisateur" not-null="true" />
+            </key>
+            <one-to-many class="entite.Users" />
+        </set>
+        <set name="emprunts" table="emprunt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdUtilisateur" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="entite.Emprunt" />
+        </set>
+    </class>
+</hibernate-mapping>

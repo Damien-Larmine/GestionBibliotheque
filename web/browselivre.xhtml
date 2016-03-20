@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="top">
+        Détails de <h:outputText value="#{livreBean.livre.titreLivre}" title="topTitre"/> de <h:outputText value="#{livreBean.livre.auteurLivre}" title="topAuteur"/>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Titre :"/>
+                    <h:outputText value="#{livreBean.livre.titreLivre}" title="Titre"/>
+                    <h:outputText value="Auteur :"/>
+                    <h:outputText value="#{livreBean.livre.auteurLivre}" title="Auteur"/>
+                    <h:outputText value="Nombre de Pages :"/>
+                    <h:outputText value="#{livreBean.livre.nbPages}"/>
+
+                    <h:outputText value="ISBN :"/>
+                    <h:outputText value="#{livreBean.livre.isbn}"/>
+
+
+                    <h:outputText value="Editeur :"/>
+                    <h:outputText value="#{livreBean.livre.editeurLivre} min" title="Editeur"/>
+
+                    <h:outputText value="Langue :"/>
+                    <h:outputText value="#{livreBean.livre.langueLivre}" title="Langue"/>
+
+                    <h:outputText value="Classification :"/>
+                    <h:outputText value="#{livreBean.livre.classificationDewey}" title="Classification Dewey"/>
+                    <h:outputText value="Cote :"/>
+                    <h:outputText value="#{livreBean.livre.coteLivre}" title="Cote"/>
+                    <h:outputText value="Couverture :"/>
+                    <h:outputText value="#{livreBean.livre.couleurNb}" title="Couverture"/>
+                    <h:outputText value="Hauteur :"/>
+                    <h:outputText value="#{livreBean.livre.hauteurLivre}" title="Hauteur"/>
+                    <h:outputText value="Largeur :"/>
+                    <h:outputText value="#{livreBean.livre.largeurLivre}" title="Largeur"/>
+                    <h:outputText value="Profondeur :"/>
+                    <h:outputText value="#{livreBean.livre.profondeurLivre}" title="Profondeur"/>
+                    <h:outputText value="Resumé :"/>
+                    <h:outputText value="#{livreBean.livre.resumeLivre}" title="Resume"/>
+                </h:panelGrid>
+                <br/>
+                <h:commandLink action="#{livreBean.prepareList}" value="Retour à la liste"/>
+                <br/>
+                <a href="./uLivre.xhtml">Modifier ce livre</a><br/>
+                <h:commandLink action="#{livreBean.deleteLivre()}" value="Supprimer ce Livre"/>
+            </h:form>
+    </ui:define>
+
+</ui:composition>

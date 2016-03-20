@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 mars 2016 10:01:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entite.Emprunt" table="emprunt" catalog="bibliotheque" optimistic-lock="version">
+        <id name="idEmprunt" type="int">
+            <column name="IdEmprunt" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="livre" class="entite.Livre" fetch="select">
+            <column name="IdLivre" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="utilisateur" class="entite.Utilisateur" fetch="select">
+            <column name="IdUtilisateur" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="dateDebut" type="int">
+            <column name="DateDebut" not-null="true" />
+        </property>
+        <property name="dateFin" type="date">
+            <column name="DateFin" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 mars 2016 10:01:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entite.Users" table="users" catalog="bibliotheque" optimistic-lock="version">
+        <id name="username" type="string">
+            <column name="username" length="50" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="utilisateur" class="entite.Utilisateur" fetch="select">
+            <column name="idUtilisateur" not-null="true" />
+        </many-to-one>
+        <property name="password" type="string">
+            <column name="password" length="50" not-null="true" />
+        </property>
+        <property name="enabled" type="int">
+            <column name="enabled" not-null="true" />
+        </property>
+        <one-to-one name="authorities" class="entite.Authorities"></one-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+              http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+ 
+    <application>
+        <el-resolver>
+            org.springframework.web.jsf.el.SpringBeanFacesELResolver
+        </el-resolver>
+    </application>
+    
+    <navigation-rule>
+        <from-view-id>/utilisateurs.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{utilisateurBean.selecUtil()}</from-action>
+            <from-outcome>browseutil</from-outcome>
+            <to-view-id>/browseutil.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/listeLivres.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{livreBean.selecLivre()}</from-action>
+            <from-outcome>browselivre</from-outcome>
+            <to-view-id>/browselivre.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+</faces-config>
+

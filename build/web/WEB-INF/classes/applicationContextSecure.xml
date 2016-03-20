@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <http auto-config='true' access-denied-page="/accessDenied.xhtml">
+              
+        <intercept-url pattern="/index.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https"/>
+        <intercept-url pattern="/indexlog.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https"/>
+        
+        <intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https"/>
+        <intercept-url pattern="/logout.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https"/>
+        <intercept-url pattern="/login-failure.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https"/>
+        <intercept-url pattern="/accessDenied.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https"/>
+        <intercept-url pattern="/denied.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https"/>
+        
+        <intercept-url pattern="/listeLivres.xhtml" access="ROLE_ADMIN,ROLE_USER" requires-channel="https"/>
+        <intercept-url pattern="/browselivre.xhtml" access="ROLE_ADMIN,ROLE_USER" requires-channel="https"/>
+        <intercept-url pattern="/cLivre.xhtml" access="ROLE_ADMIN" requires-channel="any"/>
+        <intercept-url pattern="/uLivre.xhtml" access="ROLE_ADMIN" requires-channel="any"/>
+        <intercept-url pattern="/cUtilisateur.xhtml" access="ROLE_ADMIN" requires-channel="any"/>
+        <intercept-url pattern="/uUtilisateur.xhtml" access="ROLE_ADMIN" requires-channel="any"/>
+        
+        <intercept-url pattern="/utilisateurs.xhtml" access="ROLE_ADMIN" requires-channel="any"/>
+        <intercept-url pattern="/browseutil.xhtml" access="ROLE_ADMIN" requires-channel="https"/>
+        
+        <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY, IS_AUTHENTICATED_FULLY, IS_AUTHENTICATED_REMEMBERED" requires-channel="any" />
+
+        <form-login login-page='/login.jsp' default-target-url='/indexlog.jsp'
+            always-use-default-target='true'
+            authentication-failure-url="/login-failure.jsp"/>
+
+        <port-mappings>
+            <port-mapping http="8080" https="8181"/>
+        </port-mappings>
+
+        <session-management invalid-session-url="/denied.xhtml">
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true"  />
+        </session-management>
+
+        <logout logout-success-url="/login.jsp"
+        invalidate-session="true" logout-url="/logout" 
+        delete-cookies="JSESSIONID" />
+    </http>
+    
+    <!-- authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="admin" password="admin" authorities="ROLE_ADMIN" />
+                <user name="user" password="user" authorities="ROLE_USER" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager -->
+    
+    <authentication-manager>
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="dataSource"
+               users-by-username-query="SELECT username,password,enabled FROM Users WHERE username = ?"
+               authorities-by-username-query="SELECT username,authority FROM Authorities WHERE username = ?"/>
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>

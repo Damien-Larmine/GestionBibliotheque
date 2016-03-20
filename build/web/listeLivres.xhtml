@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+            Liste des Livres
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:commandLink action="#{livreBean.previous}" value="Previous #{livreBean.taillePage}" rendered="#{livreBean.hasPreviousPage}"/> 
+            <h:commandLink action="#{livreBean.next}" value="Next #{livreBean.taillePage}" rendered="#{livreBean.hasNextPage}"/>            
+            <h:dataTable value="#{livreBean.listeLivres}" var="item" cellpadding="2" rules="all">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Titre"/>
+                        </f:facet>
+                        <h:outputText value="#{item.titreLivre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Auteur"/>
+                        </f:facet>
+                        <h:outputText value="#{item.auteurLivre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <h:commandLink action="#{livreBean.selecLivre()}" value="Voir"/>
+                    </h:column>
+            </h:dataTable>
+            <br/>
+        </h:form>
+        <a href="./indexlog.jsp">Revenir à la page d'accueil</a>
+        </ui:define>
+    </ui:composition>
+</html>

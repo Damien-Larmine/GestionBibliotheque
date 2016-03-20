@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+            Modifier un Livre
+        </ui:define>
+        <ui:define name="body">
+            <f:view>
+                <h:form id="updateLivreForm">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Titre : "/>
+                        <h:inputText value="#{livreBean.livre.titreLivre}"/>
+                        <h:outputText value="Auteur : "/>
+                        <h:inputText value="#{livreBean.livre.auteurLivre}"/>
+                        <h:outputText value="Nombre de Pages : "/>
+                        <h:inputText value="#{livreBean.livre.nbPages}"/>
+                        <h:outputText value="ISBN : "/>
+                        <h:inputText value="#{livreBean.livre.isbn}"/>
+                        <h:outputText value="Dewey : "/>
+                        <h:inputText value="#{livreBean.livre.classificationDewey}"/>
+                        <h:outputText value="Langue : "/>
+                        <h:inputText value="#{livreBean.livre.langueLivre}"/>
+                        <h:outputText value="Cote : "/>
+                        <h:inputText value="#{livreBean.livre.coteLivre}"/>
+                        <h:commandButton value="Submit" action="#{livreBean.updateLivre()}"/>
+                </h:panelGrid>
+            </h:form>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</html>
