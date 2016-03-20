@@ -11,11 +11,11 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="./template.xhtml">
         <ui:define name="top">
-            Modifier un Utilisateur
+            Créer un Utilisateur
         </ui:define>
         <ui:define name="body">
             <f:view>
-                <h:form id="updateUtilisateurForm">
+                <h:form id="createUtilisateurForm">
                     <h:panelGrid columns="2">
                         <h:outputText value="Prenom : "/>
                         <h:inputText value="#{utilisateurBean.utilisateur.prenomUtilisateur}"/>

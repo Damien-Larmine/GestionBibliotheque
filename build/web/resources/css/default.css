@@ -16,14 +16,46 @@ h1 {
     color: #D20005;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: red;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#deco a:link{
+  color: red;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#deco a:link:hover{
+  color: red;
+  font-weight : bold;
+  text-decoration: underline;
+}
+
 a:link, a:visited {
-  color: #045491;
+  color: red;
   font-weight : bold;
   text-decoration: none;
 }
 
 a:link:hover, a:visited:hover  {
-  color: #045491;
+  color: red;
   font-weight : bold;
   text-decoration : underline;
 }

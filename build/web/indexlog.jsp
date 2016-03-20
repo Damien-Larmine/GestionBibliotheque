@@ -13,29 +13,21 @@
     <head>
         <title>Page Principale</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="./resources/css/cssLayout.css">
+        <link rel="stylesheet" type="text/css" href="./resources/css/default.css">
     </head>
     <body>
-        <a href="logout">Déconnexion</a>
-        <br>
-        Bonjour <sec:authentication property="principal.username"/>
+        <h1>Bonjour <sec:authentication property="principal.username"/></h1>
         <br/>
-        Vous êtes authentifiés comme :
         <ul>
-            <sec:authorize ifAllGranted="ROLE_USER">
-                <li> utilisateur simple  </li>
-            </sec:authorize>
-            <sec:authorize ifAllGranted="ROLE_ADMIN">
-                <li> administrateur </li>
-            </sec:authorize>
-        </ul>
-        
         <sec:authorize ifAllGranted="ROLE_ADMIN">
-            <a href="./utilisateurs.xhtml"> Voir les utilisateurs</a><br/>
-            <a href="./cUtilisateur.xhtml">Ajouter un utilisateur</a><br/>
-            <a href="./cLivre.xhtml">Ajouter un livre</a><br/>
+            <li><a href="./utilisateurs.xhtml"> Voir les utilisateurs</a></li>
+            <li><a href="./cUtilisateur.xhtml">Ajouter un utilisateur</a></li>
+            <li><a href="./cLivre.xhtml">Ajouter un livre</a></li>
         </sec:authorize>
-            
-            <a href="./listeLivres.xhtml">Voir les livres</a>
+            <li><a href="./listeLivres.xhtml">Voir les livres</a></li>
+        </ul>
         <br/>
+        <a href="logout" id="deco">Déconnexion</a>
     </body>
 </html>
